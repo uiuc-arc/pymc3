@@ -708,7 +708,7 @@ def test_fit_oo(inference,
     trace = inference.fit(**fit_kwargs).sample(10000)
     mu_post = simple_model_data['mu_post']
     d = simple_model_data['d']
-    np.testing.assert_allclose(np.mean(trace['mu']), mu_post, rtol=0.05)
+    np.testing.assert_allclose([np.mean(trace['mu']), np.std(trace['mu'])], [mu_post, np.sqrt(1. /d)], rtol=0.05)
     np.testing.assert_allclose(np.std(trace['mu']), np.sqrt(1. / d), rtol=0.1)
 
 

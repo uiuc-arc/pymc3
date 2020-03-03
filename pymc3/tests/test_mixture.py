@@ -78,8 +78,8 @@ class TestMixture(SeededTest):
             trace = sample(5000, step, random_seed=self.random_seed,
                            progressbar=False, chains=1)
 
-        assert_allclose(np.sort(trace['w'].mean(axis=0)),
-                        np.sort(self.norm_w),
+        assert_allclose([np.sort(trace['w'].mean(axis=0)), np.sort(trace['mu'].mean(axis=0))],
+                        [np.sort(self.norm_w), np.sort(self.norm_mu)],
                         rtol=0.1, atol=0.1)
         assert_allclose(np.sort(trace['mu'].mean(axis=0)),
                         np.sort(self.norm_mu),
