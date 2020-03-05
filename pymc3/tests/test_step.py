@@ -527,9 +527,9 @@ class TestStepMethods:  # yield test doesn't work subclassing object
         )
     def check_stat(self, check, trace, name):
         for (var, stat, value, bound) in check:
-            s = stat(trace[var][2000:], axis=0)            
+            s = stat(trace[var][2000:], axis=0)       
             for i in range(len(s)):
-                assert np.abs(s[i]-(value[i] if isinstance(value, list) else value)) < (bound[i] if isinstance(bound,list) else bound)
+                assert np.abs(s[i]-(value[i] if isinstance(value, (list, np.ndarray)) else value)) < (bound[i] if isinstance(bound,(list, np.ndarray)) else bound)
 
     def test_step_continuous(self):
         start, model, (mu, C) = mv_simple()
