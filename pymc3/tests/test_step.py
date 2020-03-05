@@ -525,11 +525,11 @@ class TestStepMethods:  # yield test doesn't work subclassing object
             self.master_samples[step_method],
             decimal=select_by_precision(float64=6, float32=4),
         )
-
     def check_stat(self, check, trace, name):
         for (var, stat, value, bound) in check:
-            s = stat(trace[var][2000:], axis=0)
-            close_to(s, value, bound)
+            s = stat(trace[var][2000:], axis=0)            
+            for i in range(len(s)):
+                assert np.abs(s[i]-value[i]) < bound[i]
 
     def test_step_continuous(self):
         start, model, (mu, C) = mv_simple()
@@ -561,6 +561,7 @@ class TestStepMethods:  # yield test doesn't work subclassing object
                 start=start,
                 model=model,
                 random_seed=1,
+                cores=1
             )
             self.check_stat(check, trace, step.__class__.__name__)
 
