@@ -110,7 +110,7 @@ class TestSMCABC(SeededTest):
 
     def test_one_gaussian(self):
         with self.SMABC_test:
-            trace = pm.sample_smc(draws=2000, kernel="ABC", epsilon=0.1)
+            trace = pm.sample_smc(draws=2000, kernel="ABC", epsilon=0.1, n_steps=25)
 
-        np.testing.assert_almost_equal(self.data.mean(), trace["a"].mean(), decimal=2)
+        np.testing.assert_almost_equal([self.data.mean(), self.data.std()], [trace["a"].mean(), trace["b"].mean()], decimal=2)
         np.testing.assert_almost_equal(self.data.std(), trace["b"].mean(), decimal=1)
