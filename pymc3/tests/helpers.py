@@ -18,10 +18,10 @@ import numpy.random as nr
 from theano.sandbox.rng_mrg import MRG_RandomStreams
 from ..theanof import set_tt_rng, tt_rng
 import theano
-
+import numpy as np
 
 class SeededTest:
-    random_seed = 20160911
+    random_seed = np.random.randint(999999)
 
     @classmethod
     def setup_class(cls):

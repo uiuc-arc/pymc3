@@ -508,7 +508,7 @@ class TestStepMethods:  # yield test doesn't work subclassing object
             if step_method.__name__ == "NUTS":
                 step = step_method(scaling=model.test_point)
                 trace = sample(
-                    0, tune=n_steps, discard_tuned_samples=False, step=step, random_seed=1, chains=1
+                    0, tune=n_steps, discard_tuned_samples=False, step=step, chains=1
                 )
             else:
                 trace = sample(
@@ -516,7 +516,7 @@ class TestStepMethods:  # yield test doesn't work subclassing object
                     tune=n_steps,
                     discard_tuned_samples=False,
                     step=step_method(),
-                    random_seed=1,
+                    #random_seed=1,
                     chains=1,
                 )
 
@@ -560,7 +560,7 @@ class TestStepMethods:  # yield test doesn't work subclassing object
                 step=step,
                 start=start,
                 model=model,
-                random_seed=1,
+                #random_seed=1,
                 cores=1
             )
             self.check_stat(check, trace, step.__class__.__name__)
@@ -589,7 +589,7 @@ class TestStepMethods:  # yield test doesn't work subclassing object
                 CategoricalGibbsMetropolis(model.x, proposal="proportional"),
             )
         for step in steps:
-            trace = sample(8000, tune=0, step=step, start=start, model=model, random_seed=1, chains=1)
+            trace = sample(8000, tune=0, step=step, start=start, model=model, chains=1)
             self.check_stat(check, trace, step.__class__.__name__)
 
     def test_step_elliptical_slice(self):
