@@ -51,7 +51,7 @@ class KnownCDF:
                     t, p = stats.kstest(samples_[::self.ks_thin], cdf=cdf_)
                     pvals.append(p)
                 t, p = stats.combine_pvalues(pvals)
-                assert self.alpha < p
+                assert p > self.alpha
             else:
                 raise NotImplementedError()
 
