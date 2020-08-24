@@ -1,0 +1,2 @@
+[run]
+omit=pymc3/tests/*,*/test_*
