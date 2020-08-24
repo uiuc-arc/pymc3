@@ -25,14 +25,14 @@ class KnownMean:
     def test_mean(self):
         for varname, expected in self.means.items():
             samples = self.samples[varname]
-            npt.assert_allclose(expected, samples.mean(0), self.rtol, self.atol)
+            npt.assert_allclose(samples.mean(0), expected, self.rtol, self.atol)
 
 
 class KnownVariance:
     def test_var(self):
         for varname, expected in self.variances.items():
             samples = self.samples[varname]
-            npt.assert_allclose(expected, samples.var(0), self.rtol, self.atol)
+            npt.assert_allclose(samples.var(0), expected, self.rtol, self.atol)
 
 
 class KnownCDF:
