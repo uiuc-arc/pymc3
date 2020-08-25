@@ -18,48 +18,70 @@ import theano
 
 @pytest.mark.xfail(condition=(theano.config.floatX == "float32"), reason="Fails on float32")
 class TestNUTSUniform(sf.NutsFixture, sf.UniformFixture):
-    n_samples = 10000
-    tune = 1000
-    burn = 1000
-    chains = 4
+    n_samples = 100
+    tune = 240
+    burn = 40
+    chains = 3
     min_n_eff = 9000
     rtol = 0.1
     atol = 0.05
 
+# class TestNUTSUniform(sf.NutsFixture, sf.UniformFixture):
+#     n_samples = 10000
+#     tune = 1000
+#     burn = 1000
+#     chains = 4
+#     min_n_eff = 9000
+#     rtol = 0.1
+#     atol = 0.05
+
 
 class TestMetropolisUniform(sf.MetropolisFixture, sf.UniformFixture):
-    n_samples = 50000
-    tune = 10000
-    burn = 0
-    chains = 4
+    n_samples = 400
+    tune = 3200
+    burn = 20
+    chains = 1
     min_n_eff = 10000
     rtol = 0.1
     atol = 0.05
 
 
 class TestSliceUniform(sf.SliceFixture, sf.UniformFixture):
-    n_samples = 10000
-    tune = 1000
-    burn = 0
-    chains = 4
+    n_samples = 200
+    tune = 120
+    burn = 20
+    chains = 1
     min_n_eff = 5000
     rtol = 0.1
     atol = 0.05
 
 
 class TestNUTSUniform2(TestNUTSUniform):
+    n_samples = 1200
+    tune = 290
+    burn = 10
+    chains = 1
+    min_n_eff = 9000
+    rtol = 0.1
+    atol = 0.05
     step_args = {'target_accept': 0.95}
 
 
-class TestNUTSUniform3(TestNUTSUniform):
+class TestNUTSUniform3(sf.NutsFixture, sf.UniformFixture):
     step_args = {'target_accept': 0.80}
-
+    min_n_eff = 9000
+    rtol = 0.1
+    atol = 0.05
+    burn = 330
+    chains = 1
+    n_samples=1300
+    tune=330
 
 class TestNUTSNormal(sf.NutsFixture, sf.NormalFixture):
-    n_samples = 10000
-    tune = 1000
-    burn = 0
-    chains = 2
+    n_samples = 600
+    tune = 890
+    burn = 120
+    chains = 1
     min_n_eff = 10000
     rtol = 0.1
     atol = 0.05
@@ -75,10 +97,10 @@ class TestNUTSBetaBinomial(sf.NutsFixture, sf.BetaBinomialFixture):
 
 
 class TestNUTSStudentT(sf.NutsFixture, sf.StudentTFixture):
-    n_samples = 10000
-    tune = 1000
-    burn = 0
-    chains = 2
+    n_samples = 200
+    tune = 110
+    burn = 10
+    chains = 1
     min_n_eff = 1000
     rtol = 0.1
     atol = 0.05
@@ -96,8 +118,8 @@ class TestNUTSNormalLong(sf.NutsFixture, sf.NormalFixture):
 
 
 class TestNUTSLKJCholeskyCov(sf.NutsFixture, sf.LKJCholeskyCovFixture):
-    n_samples = 2000
-    tune = 1000
-    burn = 0
-    chains = 2
+    n_samples = 300
+    tune = 200
+    burn = 10
+    chains = 1
     min_n_eff = 200

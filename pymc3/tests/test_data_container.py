@@ -60,7 +60,7 @@ class TestData(SeededTest):
             y = pm.Data('y', [1., 2., 3.])
             beta = pm.Normal('beta', 0, 10.)
             pm.Normal('obs', beta * x, np.sqrt(1e-2), observed=y)
-            trace = pm.sample(1000, tune=1000, chains=1)
+            trace = pm.sample(100, tune=540, chains=1)
         # Predict on new data.
         with model:
             x_test = [5, 6, 9]
@@ -83,7 +83,7 @@ class TestData(SeededTest):
         new_y = [5., 6., 9.]
         with model:
             pm.set_data(new_data={'x': new_x, 'y': new_y})
-            new_trace = pm.sample(1000, init=None, tune=1000, chains=1)
+            new_trace = pm.sample(2430, init=None, tune=2200, chains=1)
             pp_trace = pm.sample_posterior_predictive(new_trace, 1000)
 
         assert pp_trace['obs'].shape == (1000, 3)
